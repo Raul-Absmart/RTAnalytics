@@ -33,8 +33,8 @@ namespace SQLViewer
 
                 OleDbCommand cmd = conn.CreateCommand();
                 //cmd.CommandType = CommandType.Text;
-                cmd.CommandText = //"select top 10 DATE_TIME, DENI, TDNL, DSNI, TI3R, TI2R, TI1R from WITSData order by DATE_TIME DESC";
-                "select top 10 * from WITSData order by DATE_TIME DESC";
+                cmd.CommandText = "select top 10 DATE_TIME, DENI, TDNL, DSNI, TI3R, TI2R, TI1R from WITSData order by DATE_TIME DESC";
+                //"select top 10 * from WITSData order by DATE_TIME DESC";
                 //"select * from bak3_WITSData where DATE_TIME >= '2025-04-29 23:00:00' order by DATE_TIME";
                 //rowCount =
                 cmd.ExecuteNonQuery();
@@ -50,7 +50,7 @@ namespace SQLViewer
             }
 
             dataGridView1.DataSource = dt;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DataGridViewColumn dateTimeCol = dataGridView1.Columns[0];
             //dateTimeCol.Width = 250;
             dateTimeCol.DefaultCellStyle.Format = "G"; //Long datetime
