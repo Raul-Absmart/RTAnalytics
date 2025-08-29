@@ -21,13 +21,14 @@ namespace SQLViewer
             DataTable dt = new();
             try
             {
-                OleDbConnection conn = new(@"Provider=MSOLEDBSQL.1;Data Source=LT-DELL2IN1-RS\SQLEXPRESS;Persist Security Info=False;Integrated Security=SSPI;Initial Catalog=AbsmartRT;Trust Server Certificate=True");
+                OleDbConnection conn = new(@"Provider=MSOLEDBSQL.1;Data Source=localhost\SQLEXPRESS;Persist Security Info=False;Integrated Security=SSPI;Initial Catalog=AbsmartRT;Trust Server Certificate=True");
                 //Provider = SQLOLEDB.1; Data Source = localhost\SQLEXPRESS; Integrated Security = SSPI; Initial Catalog = AbsmartRT
 
                 conn.Open();
                 OleDbCommand cmd = conn.CreateCommand();
                 //cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select top 10 * from WITSData order by DATE_TIME DESC";
+                cmd.CommandText = "select top 10 DATE_TIME, DENI, TDNL, DSNI, TI3R, TI2R, TI1R from WITSData order by DATE_TIME DESC";
+                //"select top 10 * from WITSData order by DATE_TIME DESC";
                 //"select * from bak3_WITSData where DATE_TIME >= '2025-04-29 23:00:00' order by DATE_TIME";
                 cmd.ExecuteNonQuery();              
                 OleDbDataAdapter dp = new(cmd);
