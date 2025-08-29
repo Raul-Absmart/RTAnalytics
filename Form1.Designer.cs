@@ -38,17 +38,19 @@
             // 
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(21, 15);
+            dataGridView1.Location = new Point(15, 9);
+            dataGridView1.Margin = new Padding(2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1430, 529);
+            dataGridView1.Size = new Size(1001, 317);
             dataGridView1.TabIndex = 0;
             // 
             // ExitButton
             // 
-            ExitButton.Location = new Point(765, 586);
+            ExitButton.Location = new Point(938, 352);
+            ExitButton.Margin = new Padding(2);
             ExitButton.Name = "ExitButton";
-            ExitButton.Size = new Size(112, 34);
+            ExitButton.Size = new Size(78, 20);
             ExitButton.TabIndex = 1;
             ExitButton.Text = "Exit";
             ExitButton.UseVisualStyleBackColor = true;
@@ -56,9 +58,10 @@
             // 
             // RefreshButton
             // 
-            RefreshButton.Location = new Point(594, 586);
+            RefreshButton.Location = new Point(832, 352);
+            RefreshButton.Margin = new Padding(2);
             RefreshButton.Name = "RefreshButton";
-            RefreshButton.Size = new Size(112, 34);
+            RefreshButton.Size = new Size(78, 20);
             RefreshButton.TabIndex = 2;
             RefreshButton.Text = "Refresh";
             RefreshButton.UseVisualStyleBackColor = true;
@@ -66,14 +69,15 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1474, 653);
+            ClientSize = new Size(1032, 392);
             Controls.Add(RefreshButton);
             Controls.Add(ExitButton);
             Controls.Add(dataGridView1);
+            Margin = new Padding(2);
             Name = "Form1";
-            Text = "Form1";
+            Text = "AbsmartRT Live Data Viewer";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
