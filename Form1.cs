@@ -52,12 +52,24 @@ namespace SQLViewer
 
             }
 
+            chart1.DataSource = dt;
+            chart1.Series["R3FR"].XValueMember = "DATE_TIME";
+            chart1.Series["R1ND"].XValueMember = "DATE_TIME";
+            chart1.Series["R2ND"].XValueMember = "DATE_TIME";
+            chart1.Series["R3ND"].XValueMember = "DATE_TIME";
+            chart1.Series["R3FR"].YValueMembers = "R3FR";
+            chart1.Series["R1ND"].YValueMembers = "R1ND";
+            chart1.Series["R2ND"].YValueMembers = "R2ND";
+            chart1.Series["R3ND"].YValueMembers = "R3ND";
+            chart1.DataBind();
+
             dataGridView1.DataSource = dt;
             //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DataGridViewColumn dateTimeCol = dataGridView1.Columns[0];
             //dateTimeCol.Width = 250;
             dateTimeCol.DefaultCellStyle.Format = "G"; //Long datetime
             //lblRowCount = Convert(string, rowCount);
+
 
         }
         private void ExitButton_Click(object sender, EventArgs e)
