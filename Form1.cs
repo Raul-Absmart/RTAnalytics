@@ -20,7 +20,9 @@ namespace SQLViewer
         private void ReadNewRecords()
         {
             DataTable dt = new();
-            //int rowCount;
+            Random random = new();
+            int randomRow = random.Next(1,417700);
+            string offsetRow = randomRow.ToString();
             
             try
             {
@@ -33,7 +35,8 @@ namespace SQLViewer
 
                 OleDbCommand cmd = conn.CreateCommand();
                 //cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select top 10 DATE_TIME, DENI, TDNL, DSNI, TI3R, TI2R, TI1R from WITSData order by DATE_TIME DESC";
+                cmd.CommandText = "select DATE_TIME, R3FR, R2PM, R1ND, R2ND, R3ND, DMEA from WITSData order by DATE_TIME DESC OFFSET " + offsetRow + " ROWS FETCH NEXT 10 ROWS ONLY";
+                //"select top 10 DATE_TIME, DENI, TDNL, DSNI, TI3R, TI2R, TI1R from WITSData order by DATE_TIME DESC";
                 //"select top 10 * from WITSData order by DATE_TIME DESC";
                 //"select * from bak3_WITSData where DATE_TIME >= '2025-04-29 23:00:00' order by DATE_TIME";
                 //rowCount =
