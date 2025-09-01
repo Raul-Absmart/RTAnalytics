@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Data.OleDb;
 using System.Runtime.Intrinsics.Arm;
@@ -26,22 +27,28 @@ namespace SQLViewer
             
             try
             {
-                OleDbConnection conn = new(@"Provider=MSOLEDBSQL.1;Data Source=localhost\SQLEXPRESS;Persist Security Info=False;Integrated Security=SSPI;Initial Catalog=AbsmartRT;Trust Server Certificate=True");
+                //OleDbConnection conn = new(@"Provider=MSOLEDBSQL.1;Data Source=localhost\SQLEXPRESS;Persist Security Info=False;Integrated Security=SSPI;Initial Catalog=AbsmartRT;Trust Server Certificate=True");
                 //Provider = SQLOLEDB.1; Data Source = localhost\SQLEXPRESS; Integrated Security = SSPI; Initial Catalog = AbsmartRT
+
+                SqlConnection conn = new(@"Data Source=.\SQLEXPRESS;Initial Catalog=AbsmartRT;Integrated Security=True;Encrypt=False;Trust Server Certificate=True");
                 //Data Source=.\SQLEXPRESS;Initial Catalog=AbsmartRT;Integrated Security=True;Encrypt=False;Trust Server Certificate=True
                 //Provider=.NET Framework Data Provider for SQL Server
 
                 conn.Open();
 
-                OleDbCommand cmd = conn.CreateCommand();
+                //OleDbCommand cmd = conn.CreateCommand();
                 //cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select DATE_TIME, R3FR, R2PM, R1ND, R2ND, R3ND, DMEA from WITSData order by DATE_TIME DESC OFFSET " + offsetRow + " ROWS FETCH NEXT 10 ROWS ONLY";
+                //cmd.CommandText = "select DATE_TIME, R3FR, R2PM, R1ND, R2ND, R3ND, DMEA from WITSData order by DATE_TIME DESC OFFSET " + offsetRow + " ROWS FETCH NEXT 10 ROWS ONLY";
+                string sql = "select DATE_TIME, R3FR, R2PM, R1ND, R2ND, R3ND, DMEA from WITSData order by DATE_TIME DESC OFFSET " + offsetRow + " ROWS FETCH NEXT 10 ROWS ONLY";
                 //"select top 10 DATE_TIME, DENI, TDNL, DSNI, TI3R, TI2R, TI1R from WITSData order by DATE_TIME DESC";
                 //"select top 10 * from WITSData order by DATE_TIME DESC";
                 //"select * from bak3_WITSData where DATE_TIME >= '2025-04-29 23:00:00' order by DATE_TIME";
-                //rowCount =
-                cmd.ExecuteNonQuery();
-                OleDbDataAdapter dp = new(cmd);
+                //rowCount=
+                //cmd.ExecuteNonQuery();
+                //OleDbDataAdapter dp = new(cmd);
+                SqlCommand cmd = new(sql, conn);
+                SqlDataAdapter dp = new(cmd);
+
                 dp.Fill(dt);
 
                 conn.Close();
