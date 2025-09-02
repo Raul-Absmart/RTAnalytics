@@ -8,17 +8,17 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SQLViewer
 {
-    
+
     public partial class Form1 : Form
     {
-        int startRow = 1;
+        int startRow = 60;
 
         public Form1()
         {
             InitializeComponent();
 
             ReadNewRecords();
-            
+
         }
 
         private void ReadNewRecords()
@@ -27,7 +27,7 @@ namespace SQLViewer
             //Random random = new();
             //int randomRow = random.Next(1,417700);
             string offsetRow = startRow.ToString(); //randomRow.ToString();
-            
+
             try
             {
                 SqlConnection conn = new(@"Data Source=.\SQLEXPRESS;Initial Catalog=AbsmartRT;Integrated Security=True;Encrypt=False;Trust Server Certificate=True");
@@ -46,7 +46,7 @@ namespace SQLViewer
                                 "nullif(CIFL, -999.25) as CIFL," + /*CNI Flow Linear (Corrected Density)*/
                                 "nullif(CIFG, -999.25) as CIFG," + /*Centrifuge 1 Feed Flow (Tuned)*/
                                 "nullif(RCCM, -999.25) as RCCM " + /*Centrifuge 1 Feed Mud Mass Rate*/
-                                "from WITSData ORDER BY DATE_TIME DESC OFFSET "+offsetRow+" ROWS FETCH NEXT 60 ROWS ONLY";
+                                "from WITSData ORDER BY DATE_TIME DESC OFFSET " + offsetRow + " ROWS FETCH NEXT 60 ROWS ONLY";
                 //"select DATE_TIME, R3FR, R2PM, R1ND, R2ND, R3ND, DMEA from WITSData order by DATE_TIME DESC OFFSET " + offsetRow + " ROWS FETCH NEXT 10 ROWS ONLY";
                 //"select top 10 DATE_TIME, DENI, TDNL, DSNI, TI3R, TI2R, TI1R from WITSData order by DATE_TIME DESC";
                 //"select top 10 * from WITSData order by DATE_TIME DESC";
@@ -66,18 +66,26 @@ namespace SQLViewer
 
             //MessageBox.Show("Query finished", "Message", MessageBoxButtons.OK);
 
-            
+
             chart1.DataSource = dt;
-            //chart1.Series["R3FR"].XValueMember = "DATE_TIME";
             chart1.Series["RCCM"].XValueMember = "DATE_TIME";
             chart1.Series["CIFR"].XValueMember = "DATE_TIME";
             chart1.Series["CIDR"].XValueMember = "DATE_TIME";
-            //chart1.Series["R3FR"].YValueMembers = "R3FR";
+            //chart1.Series["CIDF"].XValueMember = "DATE_TIME";
+            //chart1.Series["CIDL"].XValueMember = "DATE_TIME";
+            chart1.Series["CIFS"].XValueMember = "DATE_TIME";
+            chart1.Series["CIFL"].XValueMember = "DATE_TIME";
+            chart1.Series["CIFG"].XValueMember = "DATE_TIME";
             chart1.Series["RCCM"].YValueMembers = "RCCM";
             chart1.Series["CIFR"].YValueMembers = "CIFR";
             chart1.Series["CIDR"].YValueMembers = "CIDR";
+            //chart1.Series["CIDF"].YValueMembers = "CIDF";
+            //chart1.Series["CIDL"].YValueMembers = "CIDL";
+            chart1.Series["CIFS"].YValueMembers = "CIFS";
+            chart1.Series["CIFL"].YValueMembers = "CIFL";
+            chart1.Series["CIFG"].YValueMembers = "CIFG";
             chart1.DataBind();
-            
+
 
             dataGridView1.DataSource = dt;
             //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -85,6 +93,7 @@ namespace SQLViewer
             //dateTimeCol.Width = 250;
             dateTimeCol.DefaultCellStyle.Format = "G"; //Long datetime
             dataGridView1.Show();
+
 
         }
         private void ExitButton_Click(object sender, EventArgs e)
@@ -103,5 +112,10 @@ namespace SQLViewer
 
         }
 
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            startRow -= 1;
+            ReadNewRecords();
+        }
     }
 }
