@@ -33,7 +33,6 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             dataGridView1 = new DataGridView();
             ExitButton = new Button();
             RefreshButton = new Button();
@@ -54,12 +53,12 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(709, 528);
+            dataGridView1.Size = new Size(1600, 326);
             dataGridView1.TabIndex = 0;
             // 
             // ExitButton
             // 
-            ExitButton.Location = new Point(1340, 587);
+            ExitButton.Location = new Point(1653, 166);
             ExitButton.Name = "ExitButton";
             ExitButton.Size = new Size(111, 33);
             ExitButton.TabIndex = 1;
@@ -69,11 +68,11 @@
             // 
             // RefreshButton
             // 
-            RefreshButton.Location = new Point(1189, 587);
+            RefreshButton.Location = new Point(1653, 110);
             RefreshButton.Name = "RefreshButton";
             RefreshButton.Size = new Size(111, 33);
             RefreshButton.TabIndex = 2;
-            RefreshButton.Text = "Refresh";
+            RefreshButton.Text = "<< 5 mins";
             RefreshButton.UseVisualStyleBackColor = true;
             RefreshButton.Click += RefreshButton_Click;
             // 
@@ -81,31 +80,30 @@
             // 
             chartArea1.Name = "ChartArea1";
             chart1.ChartAreas.Add(chartArea1);
+            chart1.Enabled = false;
             legend1.Name = "Legend1";
             chart1.Legends.Add(legend1);
-            chart1.Location = new Point(762, 15);
+            chart1.Location = new Point(21, 384);
             chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series1.Legend = "Legend1";
-            series1.Name = "R3FR";
+            series1.Name = "RCCM";
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series2.Legend = "Legend1";
-            series2.Name = "R1ND";
+            series2.Name = "CIFR";
+            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series3.Legend = "Legend1";
-            series3.Name = "R2ND";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Legend = "Legend1";
-            series4.Name = "R3ND";
+            series3.Name = "CIDR";
+            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             chart1.Series.Add(series1);
             chart1.Series.Add(series2);
             chart1.Series.Add(series3);
-            chart1.Series.Add(series4);
-            chart1.Size = new Size(689, 528);
+            chart1.Size = new Size(1600, 528);
             chart1.TabIndex = 3;
             chart1.Text = "chart1";
             // 
@@ -113,7 +111,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1474, 653);
+            ClientSize = new Size(1788, 963);
             Controls.Add(chart1);
             Controls.Add(RefreshButton);
             Controls.Add(ExitButton);
