@@ -11,7 +11,7 @@ namespace SQLViewer
 
     public partial class Form1 : Form
     {
-        int startRow = 60;
+        int startRow = 1;
 
         public Form1()
         {
@@ -36,17 +36,31 @@ namespace SQLViewer
                 conn.Open();
 
                 string sql = "select DATE_TIME," +
-                                "nullif(CIDF, -999.25) as CIDF," + /*Centrifuge 1 Feed Density (Tuned)*/
-                                "nullif(CIFR, -999.25) as CIFR," + /*Centrifuge 1 Feed Flow Raw*/
-                                "nullif(CIDR, -999.25) as CIDR," + /*Centrifuge 1 Feed Density Raw*/
-                                "nullif(CNIS, -999.25) as CNIS," + /*Centrifuge 1 Feed Status*/
-                                "nullif(CITF, -999.25) as CITF," + /*Centrifuge 1 Feed Mass Totalizer*/
-                                "nullif(CIDL, -999.25) as CIDL," + /*Centrifuge 1 Feed Density (Linear)*/
-                                "nullif(CIFS, -999.25) as CIFS," + /*Centrifuge 1 Feed Flow (Linear)*/
-                                "nullif(CIFL, -999.25) as CIFL," + /*CNI Flow Linear (Corrected Density)*/
-                                "nullif(CIFG, -999.25) as CIFG," + /*Centrifuge 1 Feed Flow (Tuned)*/
-                                "nullif(RCCM, -999.25) as RCCM " + /*Centrifuge 1 Feed Mud Mass Rate*/
+                                "nullif(TI1R, -999.25) as TI1R," + /*TPA In T1 (Top) Raw*/
+                                "nullif(TI2R, -999.25) as TI2R," + /*TPA In T2 (Middle) Raw*/
+                                "nullif(TI3R, -999.25) as TI3R," + /*TPA In T3 (Bottom) Raw*/
+                                //"nullif( , -999.25) as ," + /*TI Flow Src*/
+                                //"nullif( , -999.25) as ," + /*TI MW*/
+                                //"nullif( , -999.25) as ," + /*TI MW (Tuned)*/
+                                //"nullif( , -999.25) as ," + /*TI MW (Linear)*/
+                                //"nullif( , -999.25) as ," + /*TI MW FScn*/
+                                "nullif(TI12, -999.25) as TI12," + /*TPA In T1T2 Section Density*/
+                                "nullif(TI23, -999.25) as TI23, " + /*TPA In T2T3 Section Density*/
+                                "nullif(TI13, -999.25) as TI13 " + /*TPA In T1T3 Section Density*/
+                                //"nullif( , -999.25) as , " + /*TI MW in Mud Bal*/
                                 "from WITSData ORDER BY DATE_TIME DESC OFFSET " + offsetRow + " ROWS FETCH NEXT 60 ROWS ONLY";
+                //"nullif(CIDF, -999.25) as CIDF," + /*Centrifuge 1 Feed Density (Tuned)*/
+                //"nullif(CIFR, -999.25) as CIFR," + /*Centrifuge 1 Feed Flow Raw*/
+                //"nullif(CIDR, -999.25) as CIDR," + /*Centrifuge 1 Feed Density Raw*/
+                //"nullif(CNIS, -999.25) as CNIS," + /*Centrifuge 1 Feed Status*/
+                //"nullif(CITF, -999.25) as CITF," + /*Centrifuge 1 Feed Mass Totalizer*/
+                //"nullif(CIDL, -999.25) as CIDL," + /*Centrifuge 1 Feed Density (Linear)*/
+                //"nullif(CIFS, -999.25) as CIFS," + /*Centrifuge 1 Feed Flow (Linear)*/
+                //"nullif(CIFL, -999.25) as CIFL," + /*CNI Flow Linear (Corrected Density)*/
+                //"nullif(CIFG, -999.25) as CIFG," + /*Centrifuge 1 Feed Flow (Tuned)*/
+                //"nullif(RCCM, -999.25) as RCCM " + /*Centrifuge 1 Feed Mud Mass Rate*/
+                //"from WITSData ORDER BY DATE_TIME DESC OFFSET " + offsetRow + " ROWS FETCH NEXT 60 ROWS ONLY";
+
                 //"select DATE_TIME, R3FR, R2PM, R1ND, R2ND, R3ND, DMEA from WITSData order by DATE_TIME DESC OFFSET " + offsetRow + " ROWS FETCH NEXT 10 ROWS ONLY";
                 //"select top 10 DATE_TIME, DENI, TDNL, DSNI, TI3R, TI2R, TI1R from WITSData order by DATE_TIME DESC";
                 //"select top 10 * from WITSData order by DATE_TIME DESC";
@@ -68,22 +82,22 @@ namespace SQLViewer
 
 
             chart1.DataSource = dt;
-            chart1.Series["RCCM"].XValueMember = "DATE_TIME";
-            chart1.Series["CIFR"].XValueMember = "DATE_TIME";
-            chart1.Series["CIDR"].XValueMember = "DATE_TIME";
-            //chart1.Series["CIDF"].XValueMember = "DATE_TIME";
-            //chart1.Series["CIDL"].XValueMember = "DATE_TIME";
-            chart1.Series["CIFS"].XValueMember = "DATE_TIME";
-            chart1.Series["CIFL"].XValueMember = "DATE_TIME";
-            chart1.Series["CIFG"].XValueMember = "DATE_TIME";
-            chart1.Series["RCCM"].YValueMembers = "RCCM";
-            chart1.Series["CIFR"].YValueMembers = "CIFR";
-            chart1.Series["CIDR"].YValueMembers = "CIDR";
-            //chart1.Series["CIDF"].YValueMembers = "CIDF";
-            //chart1.Series["CIDL"].YValueMembers = "CIDL";
-            chart1.Series["CIFS"].YValueMembers = "CIFS";
-            chart1.Series["CIFL"].YValueMembers = "CIFL";
-            chart1.Series["CIFG"].YValueMembers = "CIFG";
+            chart1.Series["TI3R"].XValueMember = "DATE_TIME";
+            chart1.Series["TI2R"].XValueMember = "DATE_TIME";
+            chart1.Series["TI1R"].XValueMember = "DATE_TIME";
+            //chart1.Series[""].XValueMember = "DATE_TIME";
+            //chart1.Series[""].XValueMember = "DATE_TIME";
+            chart1.Series["TI12"].XValueMember = "DATE_TIME";
+            chart1.Series["TI23"].XValueMember = "DATE_TIME";
+            chart1.Series["TI13"].XValueMember = "DATE_TIME";
+            chart1.Series["TI3R"].YValueMembers = "TI3R";
+            chart1.Series["TI2R"].YValueMembers = "TI2R";
+            chart1.Series["TI1R"].YValueMembers = "TI1R";
+            //chart1.Series[""].YValueMembers = "";
+            //chart1.Series[""].YValueMembers = "";
+            chart1.Series["TI12"].YValueMembers = "TI12";
+            chart1.Series["TI23"].YValueMembers = "TI23";
+            chart1.Series["TI13"].YValueMembers = "TI13";
             chart1.DataBind();
 
 
@@ -114,7 +128,7 @@ namespace SQLViewer
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            startRow -= 1;
+            //startRow -= 1;
             ReadNewRecords();
         }
     }

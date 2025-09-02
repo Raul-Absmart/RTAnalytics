@@ -54,18 +54,20 @@
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(21, 15);
+            dataGridView1.Location = new Point(15, 9);
+            dataGridView1.Margin = new Padding(2, 2, 2, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1600, 326);
+            dataGridView1.Size = new Size(1120, 196);
             dataGridView1.TabIndex = 0;
             // 
             // ExitButton
             // 
-            ExitButton.Location = new Point(1653, 166);
+            ExitButton.Location = new Point(1157, 100);
+            ExitButton.Margin = new Padding(2, 2, 2, 2);
             ExitButton.Name = "ExitButton";
-            ExitButton.Size = new Size(111, 33);
+            ExitButton.Size = new Size(78, 20);
             ExitButton.TabIndex = 1;
             ExitButton.Text = "Exit";
             ExitButton.UseVisualStyleBackColor = true;
@@ -73,9 +75,10 @@
             // 
             // RefreshButton
             // 
-            RefreshButton.Location = new Point(1653, 110);
+            RefreshButton.Location = new Point(1157, 66);
+            RefreshButton.Margin = new Padding(2, 2, 2, 2);
             RefreshButton.Name = "RefreshButton";
-            RefreshButton.Size = new Size(111, 33);
+            RefreshButton.Size = new Size(78, 20);
             RefreshButton.TabIndex = 2;
             RefreshButton.Text = "<< 5 mins";
             RefreshButton.UseVisualStyleBackColor = true;
@@ -95,45 +98,46 @@
             chart1.Enabled = false;
             legend1.Name = "Legend1";
             chart1.Legends.Add(legend1);
-            chart1.Location = new Point(21, 384);
+            chart1.Location = new Point(15, 230);
+            chart1.Margin = new Padding(2, 2, 2, 2);
             chart1.Name = "chart1";
             series1.BorderWidth = 3;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series1.Legend = "Legend1";
-            series1.Name = "RCCM";
+            series1.Name = "TI3R";
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series2.BorderWidth = 3;
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series2.Legend = "Legend1";
-            series2.Name = "CIFR";
+            series2.Name = "TI2R";
             series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series3.BorderWidth = 3;
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series3.Legend = "Legend1";
-            series3.Name = "CIDR";
+            series3.Name = "TI1R";
             series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series4.BorderWidth = 3;
             series4.ChartArea = "ChartArea1";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series4.Legend = "Legend1";
-            series4.Name = "CIFS";
+            series4.Name = "TI12";
             series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series4.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series5.BorderWidth = 3;
             series5.ChartArea = "ChartArea1";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series5.Legend = "Legend1";
-            series5.Name = "CIFL";
+            series5.Name = "TI23";
             series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series5.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series6.BorderWidth = 3;
             series6.ChartArea = "ChartArea1";
             series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series6.Legend = "Legend1";
-            series6.Name = "CIFG";
+            series6.Name = "TI13";
             series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series6.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             chart1.Series.Add(series1);
@@ -142,7 +146,7 @@
             chart1.Series.Add(series4);
             chart1.Series.Add(series5);
             chart1.Series.Add(series6);
-            chart1.Size = new Size(1600, 528);
+            chart1.Size = new Size(1120, 317);
             chart1.TabIndex = 3;
             chart1.Text = "chart1";
             // 
@@ -154,13 +158,14 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1788, 963);
+            ClientSize = new Size(1252, 578);
             Controls.Add(chart1);
             Controls.Add(RefreshButton);
             Controls.Add(ExitButton);
             Controls.Add(dataGridView1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "Form1";
             Text = "AbsmartRT Live Data Viewer";
             Load += Form1_Load;
